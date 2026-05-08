@@ -645,12 +645,14 @@ let keranjang = [];
 
 // DATA PRODUK + HARGA
 const produk = {
+
   "Tenda REI 4 Orang": 50000,
   "Tenda Ultra Light Naturhike 2 Orang": 75000,
   "Tenda Moon Lence 6 Orang": 70000,
   "Carrier 65L": 20000,
   "Carrier 45L": 20000,
   "Sleeping Bag": 20000,
+  "Foot Print": 10000,
   "Matras": 5000,
   "Kompor Portable": 10000,
   "Nesting Kecil": 5000,
@@ -662,13 +664,16 @@ const produk = {
   "Meja Lipat": 15000,
   "Lampu Tenda Baterai": 15000,
   "Lampu USB": 5000,
-  "1 Set Peralatan Camp (Tenda4= 4 Orang, Sleeping Bag, Matras 2, Kompor, Nesting Kecil, Carier)": 100000
+  "1 Set Peralatan Camp": 100000
+
 };
 
 // Tambah barang
 function tambah(nama) {
 
-  let ditemukan = keranjang.find(item => item.nama === nama);
+  let ditemukan = keranjang.find(
+    item => item.nama === nama
+  );
 
   if (ditemukan) {
 
@@ -684,6 +689,8 @@ function tambah(nama) {
   }
 
   renderCart();
+
+  tampilNotif(nama);
 
 }
 
@@ -715,9 +722,14 @@ function renderCart() {
 
   let hari = hitungHari();
 
+  // Minimal 1 hari
+  if (hari < 1) {
+    hari = 1;
+  }
+
   keranjang.forEach((item, index) => {
 
-    let harga = produk[item.nama];
+    let harga = produk[item.nama] || 0;
 
     let subtotal = harga * item.qty * hari;
 
@@ -726,24 +738,26 @@ function renderCart() {
     let li = document.createElement("li");
 
     li.className =
-      "bg-[#f5f1e8] border border-[#e5d3b3] p-4 rounded-xl";
+      "bg-[#f5f1e8] border border-[#e5d3b3] p-4 rounded-xl animate-[fadeIn_0.3s_ease]";
 
     li.innerHTML = `
 
-      <div class="flex justify-between items-center">
+      <div class="flex justify-between items-center gap-4">
 
-        <div>
+        <div class="flex-1">
 
           <h3 class="font-bold text-[#1e2a44]">
             ${index + 1}. ${item.nama}
           </h3>
 
-          <p class="text-sm text-gray-600">
-            Rp ${harga.toLocaleString()} x ${item.qty} x ${hari} hari
+          <p class="text-sm text-gray-600 mt-1">
+            Rp ${harga.toLocaleString('id-ID')} 
+            x ${item.qty} 
+            x ${hari} hari
           </p>
 
           <p class="font-bold text-[#d97706] mt-1">
-            Rp ${subtotal.toLocaleString()}
+            Rp ${subtotal.toLocaleString('id-ID')}
           </p>
 
         </div>
@@ -752,17 +766,17 @@ function renderCart() {
 
           <button
             onclick="kurang(${index})"
-            class="bg-red-500 hover:bg-red-600 text-white w-8 h-8 rounded-lg">
+            class="bg-red-500 hover:bg-red-600 text-white w-8 h-8 rounded-lg font-bold">
             -
           </button>
 
-          <span class="font-bold text-lg">
+          <span class="font-bold text-lg w-6 text-center">
             ${item.qty}
           </span>
 
           <button
             onclick="tambah('${item.nama}')"
-            class="bg-green-600 hover:bg-green-700 text-white w-8 h-8 rounded-lg">
+            class="bg-green-600 hover:bg-green-700 text-white w-8 h-8 rounded-lg font-bold">
             +
           </button>
 
@@ -777,43 +791,96 @@ function renderCart() {
   });
 
   // TOTAL
-  let totalBox = document.createElement("div");
+  if (keranjang.length > 0) {
 
-  totalBox.className =
-    "mt-4 bg-[#1e2a44] text-white p-4 rounded-xl text-lg font-bold";
+    let totalBox = document.createElement("div");
 
-  totalBox.innerHTML =
-    `Total : Rp ${total.toLocaleString()}`;
+    totalBox.className =
+      "mt-4 bg-[#1e2a44] text-white p-4 rounded-xl text-lg font-bold";
 
-  list.appendChild(totalBox);
+    totalBox.innerHTML =
+      `Total : Rp ${total.toLocaleString('id-ID')}`;
+
+    list.appendChild(totalBox);
+
+  }
+
+}
+
+// Animasi notif
+function tampilNotif(nama) {
+
+  let notifLama =
+    document.getElementById("notifTambah");
+
+  if (notifLama) {
+    notifLama.remove();
+  }
+
+  let notif = document.createElement("div");
+
+  notif.id = "notifTambah";
+
+  notif.className =
+    "fixed top-24 right-5 bg-[#1e2a44] text-white px-5 py-3 rounded-2xl shadow-2xl z-50 animate-[slideIn_0.4s_ease]";
+
+  notif.innerHTML =
+    `✅ <b>${nama}</b><br>berhasil ditambahkan`;
+
+  document.body.appendChild(notif);
+
+  setTimeout(() => {
+
+    notif.classList.remove(
+      "animate-[slideIn_0.4s_ease]"
+    );
+
+    notif.classList.add(
+      "animate-[fadeOut_0.5s_ease]"
+    );
+
+    setTimeout(() => {
+      notif.remove();
+    }, 500);
+
+  }, 2000);
 
 }
 
 // Hitung hari
 function hitungHari() {
 
-  let mulai = document.getElementById("tglMulai").value;
-  let selesai = document.getElementById("tglSelesai").value;
+  let mulai =
+    document.getElementById("tglMulai").value;
+
+  let selesai =
+    document.getElementById("tglSelesai").value;
 
   if (!mulai || !selesai) {
 
-    document.getElementById("durasiText").innerText = "0 Hari";
+    document.getElementById(
+      "durasiText"
+    ).innerText = "0 Hari";
 
     return 0;
+
   }
 
   let tglMulai = new Date(mulai);
   let tglSelesai = new Date(selesai);
 
   let selisih =
-    (tglSelesai - tglMulai) / (1000 * 60 * 60 * 24);
+    (tglSelesai - tglMulai) /
+    (1000 * 60 * 60 * 24);
 
-  let hari = selisih > 0 ? selisih : 0;
+  let hari = selisih > 0 ? selisih : 1;
 
-  document.getElementById("durasiText").innerText =
-    hari + " Hari";
+  document.getElementById(
+    "durasiText"
+  ).innerText = hari + " Hari";
 
   return hari;
+
 }
 
 // Event tanggal
@@ -838,7 +905,8 @@ document
 // Kirim WhatsApp
 function kirimWA() {
 
-  let nama = document.getElementById("nama").value;
+  let nama =
+    document.getElementById("nama").value;
 
   let mulai =
     document.getElementById("tglMulai").value;
@@ -848,12 +916,17 @@ function kirimWA() {
 
   let hari = hitungHari();
 
+  if (hari < 1) {
+    hari = 1;
+  }
+
   // Validasi
   if (!nama || !mulai || !selesai) {
 
     alert("Isi data terlebih dahulu!");
 
     return;
+
   }
 
   if (keranjang.length === 0) {
@@ -861,13 +934,15 @@ function kirimWA() {
     alert("Pilih barang dulu!");
 
     return;
+
   }
 
   // Pesan
   let pesan =
 `Halo, saya ingin sewa:%0A%0A`;
 
-  pesan += `Nama: ${nama}%0A`;
+  pesan +=
+`Nama: ${nama}%0A`;
 
   pesan +=
 `Tanggal: ${mulai} s/d ${selesai}%0A`;
@@ -875,15 +950,17 @@ function kirimWA() {
   pesan +=
 `Durasi: ${hari} Hari%0A%0A`;
 
-  pesan += `Barang:%0A`;
+  pesan +=
+`Barang:%0A%0A`;
 
   let total = 0;
 
   keranjang.forEach((item, index) => {
 
-    let harga = produk[item.nama];
+    let harga = produk[item.nama] || 0;
 
-    let subtotal = harga * item.qty * hari;
+    let subtotal =
+      harga * item.qty * hari;
 
     total += subtotal;
 
@@ -894,12 +971,12 @@ function kirimWA() {
 `Qty: ${item.qty}%0A`;
 
     pesan +=
-`Subtotal: Rp ${subtotal.toLocaleString()}%0A%0A`;
+`Subtotal: Rp ${subtotal.toLocaleString('id-ID')}%0A%0A`;
 
   });
 
   pesan +=
-`TOTAL: Rp ${total.toLocaleString()}`;
+`TOTAL: Rp ${total.toLocaleString('id-ID')}`;
 
   // Nomor WA
   let nomor = "6281288583143";
@@ -914,6 +991,51 @@ function kirimWA() {
 }
 
 </script>
+
+<style>
+
+@keyframes slideIn {
+
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+}
+
+@keyframes fadeOut {
+
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+}
+
+@keyframes fadeIn {
+
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+}
+
+</style>
 
 </body>
 </html> 
