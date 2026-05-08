@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Napak Tilas</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-[#f5f1e8] pt-28 text-[#1e2a44]">
+
+<!-- HEADER -->
+<header class="fixed top-0 left-0 w-full bg-[#1e2a44]/95 backdrop-blur-sm text-white px-6 py-4 flex justify-between items-center shadow-lg z-50 border-b border-[#d97706]">
+
+  <!-- Logo -->
+  <div class="flex items-center gap-4">
+
+    <img 
+      src="image_logo/logo.png"
+      alt="Napak Tilas"
+      class="w-16 h-16 object-contain">
+
+    <div>
+      <h1 class="text-2xl font-bold tracking-wide text-[#f5f1e8]">
+        Napak Tilas
+      </h1>
+
+      <p class="text-sm text-orange-300">
+        Rental Outdoor Adventure
+      </p>
+    </div>
+
+  </div>
+
+  <!-- Tombol WA -->
+  <button onclick="kirimWA()" 
+    class="bg-[#d97706] hover:bg-[#b45309] text-white px-5 py-2 rounded-xl font-semibold shadow transition duration-300">
+    Kirim ke WA
+  </button>
+
+</header>
+
+<!-- FORM -->
+<section class="p-6 bg-[#fffaf3] m-6 rounded-2xl shadow-lg border border-[#e5d3b3]">
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+    <!-- Nama -->
+    <div>
+      <label class="block mb-2 font-semibold text-[#1e2a44]">
+        Nama Penyewa
+      </label>
+
+      <input 
+        id="nama"
+        type="text"
+        placeholder="Masukkan nama"
+        class="w-full border border-[#d6c3a3] bg-white p-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#d97706]">
+    </div>
+
+    <!-- Tanggal Ambil -->
+    <div>
+      <label class="block mb-2 font-semibold text-[#1e2a44]">
+        Tanggal Ambil
+      </label>
+
+      <input 
+        id="tglMulai"
+        type="date"
+        class="w-full border border-[#d6c3a3] bg-white p-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#d97706]">
+    </div>
+
+    <!-- Tanggal Kembali -->
+    <div>
+      <label class="block mb-2 font-semibold text-[#1e2a44]">
+        Tanggal Kembali
+      </label>
+
+      <input 
+        id="tglSelesai"
+        type="date"
+        class="w-full border border-[#d6c3a3] bg-white p-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#d97706]">
+    </div>
+
+  </div>
+
+</section>
+
+<!-- PRODUK -->
+<section class="p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+
+  <!-- CARD 1 -->
+  <div class="bg-[#fffaf3] rounded-2xl shadow-md hover:shadow-2xl transition duration-300 overflow-hidden border border-[#e5d3b3]">
+
+    <img 
+      src="images_barang/tenda4.webp"
+      class="h-52 w-full object-cover">
+
+    <div class="p-5">
+
+      <h2 class="font-bold text-xl text-[#1e2a44]">
+        Tenda REI 4 Orang
+      </h2>
+
+      <p class="text-[#d97706] font-bold text-lg mt-1">
+        Rp 50.000 / hari
+      </p>
+
+      <button 
+        onclick="tambah('Tenda REI 4 Orang')"
+        class="mt-4 w-full bg-[#1e2a44] hover:bg-[#111827] text-white py-3 rounded-xl transition">
+        Tambah
+      </button>
+
+    </div>
+  </div>
+
+  <!-- CARD 2 -->
+  <div class="bg-[#fffaf3] rounded-2xl shadow-md hover:shadow-2xl transition duration-300 overflow-hidden border border-[#e5d3b3]">
+
+    <img 
+      src="images_barang/tenda2.webp"
+      class="h-52 w-full object-cover">
+
+    <div class="p-5">
+
+      <h2 class="font-bold text-xl text-[#1e2a44]">
+        Tenda Ultra Light Naturhike 2 Orang
+      </h2>
+
+      <p class="text-[#d97706] font-bold text-lg mt-1">
+        Rp 75.000 / hari
+      </p>
+
+      <button 
+        onclick="tambah('Tenda Ultra Light Naturhike 2 Orang')"
+        class="mt-4 w-full bg-[#1e2a44] hover:bg-[#111827] text-white py-3 rounded-xl transition">
+        Tambah
+      </button>
+
+    </div>
+  </div>
+
+  <!-- CARD 3 -->
+  <div class="bg-[#fffaf3] rounded-2xl shadow-md hover:shadow-2xl transition duration-300 overflow-hidden border border-[#e5d3b3]">
+
+    <img 
+      src="images_barang/tenda6.webp"
+      class="h-52 w-full object-cover">
+
+    <div class="p-5">
+
+      <h2 class="font-bold text-xl text-[#1e2a44]">
+        Tenda Moon Lence 6 Orang
+      </h2>
+
+      <p class="text-[#d97706] font-bold text-lg mt-1">
+        Rp 70.000 / hari
+      </p>
+
+      <button 
+        onclick="tambah('Tenda Moon Lence 6 Orang')"
+        class="mt-4 w-full bg-[#1e2a44] hover:bg-[#111827] text-white py-3 rounded-xl transition">
+        Tambah
+      </button>
+
+    </div>
+  </div>
+
+  <!-- CARD 4 -->
+  <div class="bg-[#fffaf3] rounded-2xl shadow-md hover:shadow-2xl transition duration-300 overflow-hidden border border-[#e5d3b3]">
+
+    <img 
+      src="images_barang/carier65.webp"
+      class="h-52 w-full object-cover">
+
+    <div class="p-5">
+
+      <h2 class="font-bold text-xl text-[#1e2a44]">
+        Carrier 65L
+      </h2>
+
+      <p class="text-[#d97706] font-bold text-lg mt-1">
+        Rp 20.000 / hari
+      </p>
+
+      <button 
+        onclick="tambah('Carrier 65L')"
+        class="mt-4 w-full bg-[#1e2a44] hover:bg-[#111827] text-white py-3 rounded-xl transition">
+        Tambah
+      </button>
+
+    </div>
+  </div>
+
+  <!-- CARD 5 -->
+  <div class="bg-[#fffaf3] rounded-2xl shadow-md hover:shadow-2xl transition duration-300 overflow-hidden border border-[#e5d3b3]">
+
+    <img 
+      src="images_barang/carier45.jfif"
+      class="h-52 w-full object-cover">
+
+    <div class="p-5">
+
+      <h2 class="font-bold text-xl text-[#1e2a44]">
+        Carrier 45L
+      </h2>
+
+      <p class="text-[#d97706] font-bold text-lg mt-1">
+        Rp 20.000 / hari
+      </p>
+
+      <button 
+        onclick="tambah('Carrier 45L')"
+        class="mt-4 w-full bg-[#1e2a44] hover:bg-[#111827] text-white py-3 rounded-xl transition">
+        Tambah
+      </button>
+
+    </div>
+  </div>
+
+  <!-- CARD 6 -->
+  <div class="bg-[#fffaf3] rounded-2xl shadow-md hover:shadow-2xl transition duration-300 overflow-hidden border border-[#e5d3b3]">
+
+    <img 
+      src="images_barang/sleepingbag.webp"
+      class="h-52 w-full object-cover">
+
+    <div class="p-5">
+
+      <h2 class="font-bold text-xl text-[#1e2a44]">
+        Sleeping Bag
+      </h2>
+
+      <p class="text-[#d97706] font-bold text-lg mt-1">
+        Rp 20.000 / hari
+      </p>
+
+      <button 
+        onclick="tambah('Sleeping Bag')"
+        class="mt-4 w-full bg-[#1e2a44] hover:bg-[#111827] text-white py-3 rounded-xl transition">
+        Tambah
+      </button>
+
+    </div>
+  </div>
+
+    <!-- CARD 7 -->
+  <div class="bg-[#fffaf3] rounded-2xl shadow-md hover:shadow-2xl transition duration-300 overflow-hidden border border-[#e5d3b3]">
+
+    <img 
+      src="images_barang/matras.webp"
+      class="h-52 w-full object-cover">
+
+    <div class="p-5">
+
+      <h2 class="font-bold text-xl text-[#1e2a44]">
+        Matras
+      </h2>
+
+      <p class="text-[#d97706] font-bold text-lg mt-1">
+        Rp 5.000 / hari
+      </p>
+
+      <button 
+        onclick="tambah('Matras')"
+        class="mt-4 w-full bg-[#1e2a44] hover:bg-[#111827] text-white py-3 rounded-xl transition">
+        Tambah
+      </button>
+
+    </div>
+  </div>
+
+  
+  <!-- CARD 8 -->
+  <div class="bg-[#fffaf3] rounded-2xl shadow-md hover:shadow-2xl transition duration-300 overflow-hidden border border-[#e5d3b3]">
+
+    <img 
+      src="images_barang/kompor.webp"
+      class="h-52 w-full object-cover">
+
+    <div class="p-5">
+
+      <h2 class="font-bold text-xl text-[#1e2a44]">
+        Kompor Portable
+      </h2>
+
+      <p class="text-[#d97706] font-bold text-lg mt-1">
+        Rp 10.000 / hari
+      </p>
+
+      <button 
+        onclick="tambah('Kompor Portable')"
+        class="mt-4 w-full bg-[#1e2a44] hover:bg-[#111827] text-white py-3 rounded-xl transition">
+        Tambah
+      </button>
+
+    </div>
+  </div>
+
+  
+  <!-- CARD 9 -->
+  <div class="bg-[#fffaf3] rounded-2xl shadow-md hover:shadow-2xl transition duration-300 overflow-hidden border border-[#e5d3b3]">
+
+    <img 
+      src="images_barang/nestingkecil.webp"
+      class="h-52 w-full object-cover">
+
+    <div class="p-5">
+
+      <h2 class="font-bold text-xl text-[#1e2a44]">
+        Nesting Kecil
+      </h2>
+
+      <p class="text-[#d97706] font-bold text-lg mt-1">
+        Rp 5.000 / hari
+      </p>
+
+      <button 
+        onclick="tambah('Nesting Kecil')"
+        class="mt-4 w-full bg-[#1e2a44] hover:bg-[#111827] text-white py-3 rounded-xl transition">
+        Tambah
+      </button>
+
+    </div>
+  </div>
+
+  
+  <!-- CARD 10 -->
+  <div class="bg-[#fffaf3] rounded-2xl shadow-md hover:shadow-2xl transition duration-300 overflow-hidden border border-[#e5d3b3]">
+
+    <img 
+      src="images_barang/nestingbesar.webp"
+      class="h-52 w-full object-cover">
+
+    <div class="p-5">
+
+      <h2 class="font-bold text-xl text-[#1e2a44]">
+        Nesting Besar
+      </h2>
+
+      <p class="text-[#d97706] font-bold text-lg mt-1">
+        Rp 10.000 / hari
+      </p>
+
+      <button 
+        onclick="tambah('Nesting Besar')"
+        class="mt-4 w-full bg-[#1e2a44] hover:bg-[#111827] text-white py-3 rounded-xl transition">
+        Tambah
+      </button>
+
+    </div>
+  </div>
+
+  
+  <!-- CARD 11 -->
+  <div class="bg-[#fffaf3] rounded-2xl shadow-md hover:shadow-2xl transition duration-300 overflow-hidden border border-[#e5d3b3]">
+
+    <img 
+      src="images_barang/hamok.webp"
+      class="h-52 w-full object-cover">
+
+    <div class="p-5">
+
+      <h2 class="font-bold text-xl text-[#1e2a44]">
+        Hamok
+      </h2>
+
+      <p class="text-[#d97706] font-bold text-lg mt-1">
+        Rp 5.000 / hari
+      </p>
+
+      <button 
+        onclick="tambah('Hamok')"
+        class="mt-4 w-full bg-[#1e2a44] hover:bg-[#111827] text-white py-3 rounded-xl transition">
+        Tambah
+      </button>
+
+    </div>
+  </div>
+
+  
+  <!-- CARD 12 -->
+  <div class="bg-[#fffaf3] rounded-2xl shadow-md hover:shadow-2xl transition duration-300 overflow-hidden border border-[#e5d3b3]">
+
+    <img 
+      src="images_barang/flaysheet4x6.webp"
+      class="h-52 w-full object-cover">
+
+    <div class="p-5">
+
+      <h2 class="font-bold text-xl text-[#1e2a44]">
+        Flaysheet 4x6
+      </h2>
+
+      <p class="text-[#d97706] font-bold text-lg mt-1">
+        Rp 15.000 / hari
+      </p>
+
+      <button 
+        onclick="tambah('Flaysheet 4x6')"
+        class="mt-4 w-full bg-[#1e2a44] hover:bg-[#111827] text-white py-3 rounded-xl transition">
+        Tambah
+      </button>
+
+    </div>
+  </div>
+
+  
+  <!-- CARD 13 -->
+  <div class="bg-[#fffaf3] rounded-2xl shadow-md hover:shadow-2xl transition duration-300 overflow-hidden border border-[#e5d3b3]">
+
+    <img 
+      src="images_barang/tiangflaysheet.webp"
+      class="h-52 w-full object-cover">
+
+    <div class="p-5">
+
+      <h2 class="font-bold text-xl text-[#1e2a44]">
+        Tiang Flaysheet
+      </h2>
+
+      <p class="text-[#d97706] font-bold text-lg mt-1">
+        Rp 10.000 / hari
+      </p>
+
+      <button 
+        onclick="tambah('Tiang Flaysheet')"
+        class="mt-4 w-full bg-[#1e2a44] hover:bg-[#111827] text-white py-3 rounded-xl transition">
+        Tambah
+      </button>
+
+    </div>
+  </div>
+
+  
+  <!-- CARD 14 -->
+  <div class="bg-[#fffaf3] rounded-2xl shadow-md hover:shadow-2xl transition duration-300 overflow-hidden border border-[#e5d3b3]">
+
+    <img 
+      src="images_barang/kursilipat.webp"
+      class="h-52 w-full object-cover">
+
+    <div class="p-5">
+
+      <h2 class="font-bold text-xl text-[#1e2a44]">
+        Kursi Lipat
+      </h2>
+
+      <p class="text-[#d97706] font-bold text-lg mt-1">
+        Rp 15.000 / hari
+      </p>
+
+      <button 
+        onclick="tambah('Kursi Lipat')"
+        class="mt-4 w-full bg-[#1e2a44] hover:bg-[#111827] text-white py-3 rounded-xl transition">
+        Tambah
+      </button>
+
+    </div>
+  </div>
+
+  
+  <!-- CARD 15 -->
+  <div class="bg-[#fffaf3] rounded-2xl shadow-md hover:shadow-2xl transition duration-300 overflow-hidden border border-[#e5d3b3]">
+
+    <img 
+      src="images_barang/mejalipat.webp"
+      class="h-52 w-full object-cover">
+
+    <div class="p-5">
+
+      <h2 class="font-bold text-xl text-[#1e2a44]">
+        Meja Lipat
+      </h2>
+
+      <p class="text-[#d97706] font-bold text-lg mt-1">
+        Rp 15.000 / hari
+      </p>
+
+      <button 
+        onclick="tambah('Meja Lipat')"
+        class="mt-4 w-full bg-[#1e2a44] hover:bg-[#111827] text-white py-3 rounded-xl transition">
+        Tambah
+      </button>
+
+    </div>
+  </div>
+
+  
+  <!-- CARD 16 -->
+  <div class="bg-[#fffaf3] rounded-2xl shadow-md hover:shadow-2xl transition duration-300 overflow-hidden border border-[#e5d3b3]">
+
+    <img 
+      src="images_barang/lamputendabatrai.webp"
+      class="h-52 w-full object-cover">
+
+    <div class="p-5">
+
+      <h2 class="font-bold text-xl text-[#1e2a44]">
+        Lampu Tenda Baterai
+      </h2>
+
+      <p class="text-[#d97706] font-bold text-lg mt-1">
+        Rp 15.000 / hari
+      </p>
+
+      <button 
+        onclick="tambah('Lampu Tenda Baterai')"
+        class="mt-4 w-full bg-[#1e2a44] hover:bg-[#111827] text-white py-3 rounded-xl transition">
+        Tambah
+      </button>
+
+    </div>
+  </div>
+
+  
+  <!-- CARD 17 -->
+  <div class="bg-[#fffaf3] rounded-2xl shadow-md hover:shadow-2xl transition duration-300 overflow-hidden border border-[#e5d3b3]">
+
+    <img 
+      src="images_barang/lampuusb.webp"
+      class="h-52 w-full object-cover">
+
+    <div class="p-5">
+
+      <h2 class="font-bold text-xl text-[#1e2a44]">
+        Lampu USB
+      </h2>
+
+      <p class="text-[#d97706] font-bold text-lg mt-1">
+        Rp 5.000 / hari
+      </p>
+
+      <button 
+        onclick="tambah('Lampu USB')"
+        class="mt-4 w-full bg-[#1e2a44] hover:bg-[#111827] text-white py-3 rounded-xl transition">
+        Tambah
+      </button>
+
+    </div>
+  </div>
+
+  
+  <!-- CARD 18 -->
+  <div class="bg-[#fffaf3] rounded-2xl shadow-md hover:shadow-2xl transition duration-300 overflow-hidden border border-[#e5d3b3]">
+
+    <img 
+      src="images_barang/1set.jfif"
+      class="h-52 w-full object-cover">
+
+    <div class="p-5">
+
+      <h2 class="font-bold text-xl text-[#1e2a44]">
+        1 Set Peralatan Camp (Tenda4= 4 Orang, Sleeping Bag, Matras 2, Kompor, Nesting Kecil, Carier)
+      </h2>
+
+      <p class="text-[#d97706] font-bold text-lg mt-1">
+        Rp 100.000 / hari
+      </p>
+
+      <button 
+        onclick="tambah('1 Set Peralatan Camp (Tenda4= 4 Orang, Sleeping Bag, Matras 2, Kompor, Nesting Kecil, Carier)')"
+        class="mt-4 w-full bg-[#1e2a44] hover:bg-[#111827] text-white py-3 rounded-xl transition">
+        Tambah
+      </button>
+
+    </div>
+  </div>
+
+
+  <!-- KERANJANG -->
+</section>
+
+<section class="p-6">
+
+  <div class="bg-[#fffaf3] rounded-2xl shadow-lg p-5 border border-[#e5d3b3]">
+
+    <div class="flex justify-between items-center mb-4">
+
+      <h2 class="font-bold text-xl text-[#1e2a44]">
+        🛒 Keranjang
+      </h2>
+
+      <div class="text-sm text-gray-600">
+        Durasi:
+        <span id="durasiText" class="font-bold text-[#d97706]">
+          0 Hari
+        </span>
+      </div>
+
+    </div>
+
+    <ul id="cart" class="space-y-2"></ul>
+
+  </div>
+
+</section>
+
+<script>
+
+let keranjang = [];
+
+// DATA PRODUK + HARGA
+const produk = {
+  "Tenda REI 4 Orang": 50000,
+  "Tenda Ultra Light Naturhike 2 Orang": 75000,
+  "Tenda Moon Lence 6 Orang": 70000,
+  "Carrier 65L": 20000,
+  "Carrier 45L": 20000,
+  "Sleeping Bag": 20000,
+  "Matras": 5000,
+  "Kompor Portable": 10000,
+  "Nesting Kecil": 5000,
+  "Nesting Besar": 10000,
+  "Hamok": 5000,
+  "Flaysheet 4x6": 15000,
+  "Tiang Flaysheet": 10000,
+  "Kursi Lipat": 15000,
+  "Meja Lipat": 15000,
+  "Lampu Tenda Baterai": 15000,
+  "Lampu USB": 5000,
+  "1 Set Peralatan Camp (Tenda4= 4 Orang, Sleeping Bag, Matras 2, Kompor, Nesting Kecil, Carier)": 100000
+};
+
+// Tambah barang
+function tambah(nama) {
+
+  let ditemukan = keranjang.find(item => item.nama === nama);
+
+  if (ditemukan) {
+
+    ditemukan.qty += 1;
+
+  } else {
+
+    keranjang.push({
+      nama: nama,
+      qty: 1
+    });
+
+  }
+
+  renderCart();
+
+}
+
+// Kurang barang
+function kurang(index) {
+
+  if (keranjang[index].qty > 1) {
+
+    keranjang[index].qty -= 1;
+
+  } else {
+
+    keranjang.splice(index, 1);
+
+  }
+
+  renderCart();
+
+}
+
+// Render keranjang
+function renderCart() {
+
+  let list = document.getElementById("cart");
+
+  list.innerHTML = "";
+
+  let total = 0;
+
+  let hari = hitungHari();
+
+  keranjang.forEach((item, index) => {
+
+    let harga = produk[item.nama];
+
+    let subtotal = harga * item.qty * hari;
+
+    total += subtotal;
+
+    let li = document.createElement("li");
+
+    li.className =
+      "bg-[#f5f1e8] border border-[#e5d3b3] p-4 rounded-xl";
+
+    li.innerHTML = `
+
+      <div class="flex justify-between items-center">
+
+        <div>
+
+          <h3 class="font-bold text-[#1e2a44]">
+            ${index + 1}. ${item.nama}
+          </h3>
+
+          <p class="text-sm text-gray-600">
+            Rp ${harga.toLocaleString()} x ${item.qty} x ${hari} hari
+          </p>
+
+          <p class="font-bold text-[#d97706] mt-1">
+            Rp ${subtotal.toLocaleString()}
+          </p>
+
+        </div>
+
+        <div class="flex items-center gap-2">
+
+          <button
+            onclick="kurang(${index})"
+            class="bg-red-500 hover:bg-red-600 text-white w-8 h-8 rounded-lg">
+            -
+          </button>
+
+          <span class="font-bold text-lg">
+            ${item.qty}
+          </span>
+
+          <button
+            onclick="tambah('${item.nama}')"
+            class="bg-green-600 hover:bg-green-700 text-white w-8 h-8 rounded-lg">
+            +
+          </button>
+
+        </div>
+
+      </div>
+
+    `;
+
+    list.appendChild(li);
+
+  });
+
+  // TOTAL
+  let totalBox = document.createElement("div");
+
+  totalBox.className =
+    "mt-4 bg-[#1e2a44] text-white p-4 rounded-xl text-lg font-bold";
+
+  totalBox.innerHTML =
+    `Total : Rp ${total.toLocaleString()}`;
+
+  list.appendChild(totalBox);
+
+}
+
+// Hitung hari
+function hitungHari() {
+
+  let mulai = document.getElementById("tglMulai").value;
+  let selesai = document.getElementById("tglSelesai").value;
+
+  if (!mulai || !selesai) {
+
+    document.getElementById("durasiText").innerText = "0 Hari";
+
+    return 0;
+  }
+
+  let tglMulai = new Date(mulai);
+  let tglSelesai = new Date(selesai);
+
+  let selisih =
+    (tglSelesai - tglMulai) / (1000 * 60 * 60 * 24);
+
+  let hari = selisih > 0 ? selisih : 0;
+
+  document.getElementById("durasiText").innerText =
+    hari + " Hari";
+
+  return hari;
+}
+
+// Event tanggal
+document
+  .getElementById("tglMulai")
+  .addEventListener("change", () => {
+
+    hitungHari();
+    renderCart();
+
+  });
+
+document
+  .getElementById("tglSelesai")
+  .addEventListener("change", () => {
+
+    hitungHari();
+    renderCart();
+
+  });
+
+// Kirim WhatsApp
+function kirimWA() {
+
+  let nama = document.getElementById("nama").value;
+
+  let mulai =
+    document.getElementById("tglMulai").value;
+
+  let selesai =
+    document.getElementById("tglSelesai").value;
+
+  let hari = hitungHari();
+
+  // Validasi
+  if (!nama || !mulai || !selesai) {
+
+    alert("Isi data terlebih dahulu!");
+
+    return;
+  }
+
+  if (keranjang.length === 0) {
+
+    alert("Pilih barang dulu!");
+
+    return;
+  }
+
+  // Pesan
+  let pesan =
+`Halo, saya ingin sewa:%0A%0A`;
+
+  pesan += `Nama: ${nama}%0A`;
+
+  pesan +=
+`Tanggal: ${mulai} s/d ${selesai}%0A`;
+
+  pesan +=
+`Durasi: ${hari} Hari%0A%0A`;
+
+  pesan += `Barang:%0A`;
+
+  let total = 0;
+
+  keranjang.forEach((item, index) => {
+
+    let harga = produk[item.nama];
+
+    let subtotal = harga * item.qty * hari;
+
+    total += subtotal;
+
+    pesan +=
+`${index + 1}. ${item.nama}%0A`;
+
+    pesan +=
+`Qty: ${item.qty}%0A`;
+
+    pesan +=
+`Subtotal: Rp ${subtotal.toLocaleString()}%0A%0A`;
+
+  });
+
+  pesan +=
+`TOTAL: Rp ${total.toLocaleString()}`;
+
+  // Nomor WA
+  let nomor = "6281288583143";
+
+  // URL WA
+  let url =
+`https://wa.me/${nomor}?text=${pesan}`;
+
+  // Buka WA
+  window.open(url, "_blank");
+
+}
+
+</script>
+
+</body>
+</html> 
